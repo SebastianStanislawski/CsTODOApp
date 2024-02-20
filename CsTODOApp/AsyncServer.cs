@@ -35,7 +35,7 @@ namespace Server
         }
 
         private static void ReceiveCallback(IAsyncResult ar)
-        {
+       {
             Socket socket = (Socket)ar.AsyncState;
 
             int received = socket.EndReceive(ar);
@@ -47,9 +47,10 @@ namespace Server
 
 
 
-            byte[] data = Encoding.ASCII.GetBytes($"{text} from server bois");
+            byte[] data = Encoding.ASCII.GetBytes($"{text} from server");
             socket.BeginSend(data, 0, data.Length, SocketFlags.None, new AsyncCallback(SendCallback), socket);
             socket.BeginReceive(buffer, 0, buffer.Length, SocketFlags.None, new AsyncCallback(ReceiveCallback), socket);
+            serverSocket.BeginAccept(new AsyncCallback(AcceptCallback), null);
         }
 
         private static void SendCallback(IAsyncResult ar)
