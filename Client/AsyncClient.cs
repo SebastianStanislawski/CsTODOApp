@@ -24,9 +24,7 @@ namespace Client
                 {
                     Console.Clear();
                     Console.WriteLine($"Attempt no. {att}");
-                    //Console.WriteLine(e);
                 }
-
             }
             Console.Clear();
             Console.WriteLine("Connected!");
